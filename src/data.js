@@ -1,0 +1,47 @@
+const projects = [
+  {
+    id: 1,
+    title: "personal",
+  },
+  {
+    id: 2,
+    title: "works",
+  },
+];
+
+const tasks = [
+  {
+    id: 1,
+    title: "Do Homework",
+    description: "-",
+    dueDate: "2024-12-7",
+    priority: ["urgent"],
+    notes: "-",
+    checklist: false,
+    tags: [1, 2],
+    projects: ["personal"],
+  },
+];
+
+const tags = [
+  {
+    id: 1,
+    title: "Inbox",
+    tasks: [],
+    classIcon: "fa-solid fa-inbox"
+  },
+  {
+    id: 2,
+    title: "Today",
+    tasks: [1],
+    classIcon: "fa-solid fa-calendar-day"
+  },
+  {
+    id: 3,
+    title: "Upcoming",
+    tasks: [],
+    classIcon: "fa-solid fa-calendar-days"
+  },
+];
+
+export { projects, tasks, tags };
