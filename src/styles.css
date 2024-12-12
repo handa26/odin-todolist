@@ -69,7 +69,7 @@ body {
   cursor: pointer;
   background-color: #39485e;
   color: #eee;
-  
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,6 +78,104 @@ body {
 
 .tags-button i {
   margin: 0;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Header */
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 20px;
+}
+
+.modal-body .input-group .input-title,
+.modal-body .input-group .input-description {
+  width: 100%;
+  border: none;
+}
+
+.modal-body .input-group .input-title {
+  font-size: 20px;
+}
+
+.modal-body .input-group input:focus {
+  outline: none;
+}
+
+.modal-btns {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+
+  margin-top: 20px;
+}
+
+.modal-btns button {
+  width: 68px;
+  height: 32px;
+  border: none;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+.modal-btns .btn-dark {
+  background-color: #666666;
+  color: #fff;
+}
+
+.modal-btns .btn-light {
+  color: #666666;
+}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: 100px auto;
+  border-radius: 10px;
+  padding: 0;
+  border: 1px solid #888;
+  width: 550px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 /* Content */
@@ -167,5 +265,5 @@ body {
 }
 
 .item-label input:checked ~ .checkmark {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }

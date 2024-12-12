@@ -20,6 +20,27 @@ const root = document.getElementById("root");
 
 // Render popup task
 
+// Render create task modal
+function renderCreateTaskModal() {
+  const modal = document.getElementById("myModal");
+  const btn = document.getElementById("tags-button");
+  const span = document.getElementsByClassName("close")[0];
+
+  btn.onclick = function () {
+    modal.style.display = "block";
+  };
+
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+}
+
 // Render overall pages
 function renderSidebar() {
   const ul = document.querySelector("#tags ul");
@@ -39,6 +60,7 @@ function renderSidebar() {
 
 function renderPage() {
   renderSidebar();
+  renderCreateTaskModal();
 }
 
 renderPage();
