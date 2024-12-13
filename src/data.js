@@ -21,6 +21,17 @@ const tasks = [
     tags: [1, 2],
     projects: ["personal"],
   },
+  {
+    id: 2,
+    title: "Replace lightbulb",
+    description: "Need to change kitchen lightbulb",
+    dueDate: "2024-12-12",
+    priority: [""],
+    notes: "-",
+    checklist: true,
+    tags: [1, 3],
+    projects: ["personal"],
+  },
 ];
 
 const tags = [
