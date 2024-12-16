@@ -6,9 +6,18 @@ const root = document.getElementById("root");
 const content = document.querySelector(".content");
 const title = document.getElementById("title");
 const desc = document.getElementById("description");
+const ul = document.querySelector("#tags ul");
+
+function generateId(tasks) {
+  if (tasks.length === 0) return 1; // Start from 1 if tasks are empty
+
+  const maxId = tasks.reduce((max, task) => (task.id > max ? task.id : max), 0);
+  return maxId + 1;
+}
 
 // Create task logic
-function Task(title, desc, checklist, tags) {
+function Task(id, title, desc, checklist, tags) {
+  this.id = id;
   this.title = title;
   this.description = desc;
   this.checklist = checklist;
@@ -16,7 +25,21 @@ function Task(title, desc, checklist, tags) {
 }
 
 function createTask() {
-  const newTask = new Task(title.value, desc.value, false, [1]);
+  const newId = generateId(tasks);
+  const selectedTags = [1, 2]
+  const newTask = new Task(newId, title.value, desc.value, false, selectedTags);
+
+  // Put selected tags into each tag category in tags data
+  selectedTags.map((tag) => {
+    if (tag === 1) {
+      tags[0].tasks.push(newTask.id);
+    } else if (tag === 2) {
+      tags[1].tasks.push(newTask.id);
+    } else {
+      tags[2].tasks.push(newTask.id);
+    }
+  })
+
   if (title.value === "") {
     alert("Please fill all input fields.");
     return;
@@ -24,6 +47,7 @@ function createTask() {
 
   tasks.push(JSON.parse(JSON.stringify(newTask)));
   renderTasks();
+  renderSidebar();
 }
 
 function resetForm() {
@@ -109,18 +133,24 @@ function renderCreateTaskModal() {
 
 // Render overall pages
 function renderSidebar() {
-  const ul = document.querySelector("#tags ul");
+  ul.innerHTML = "";
 
   tags.map((tag) => {
     const li = document.createElement("li");
     const icon = document.createElement("i");
-
+    const tasksCounter = document.createElement("p");
+    const iconText = document.createElement("p");
+    
     icon.className = tag.classIcon;
+    tasksCounter.classList.add("tasks-counter");
 
-    li.innerText = tag.title;
+    iconText.innerText = tag.title;
+    tasksCounter.textContent = tag.tasks.length;
 
     ul.appendChild(li);
-    li.prepend(icon);
+    li.appendChild(iconText);
+    iconText.prepend(icon);
+    li.appendChild(tasksCounter);
   });
 }
 

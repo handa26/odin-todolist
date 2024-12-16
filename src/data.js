@@ -38,13 +38,13 @@ const tags = [
   {
     id: 1,
     title: "Inbox",
-    tasks: [],
+    tasks: [1, 2],
     classIcon: "fa-solid fa-inbox"
   },
   {
     id: 2,
     title: "Today",
-    tasks: [1],
+    tasks: [1, 2],
     classIcon: "fa-solid fa-calendar-day"
   },
   {

@@ -38,6 +38,20 @@ body {
   font-weight: 300;
   margin-bottom: 2px;
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar li .tasks-counter {
+  font-size: 10px;
+  background-color: #39485e;
+  color: #eee;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  border-radius: 50%;
 }
 
 .sidebar i {
