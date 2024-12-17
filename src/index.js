@@ -4,9 +4,13 @@ import "./styles.css";
 
 const root = document.getElementById("root");
 const content = document.querySelector(".content");
+const ul = document.querySelector("#tags ul");
+
+// Input form
 const title = document.getElementById("title");
 const desc = document.getElementById("description");
-const ul = document.querySelector("#tags ul");
+const dueDate = document.getElementById("dueDate");
+const priority = document.getElementById("priority");
 
 function generateId(tasks) {
   if (tasks.length === 0) return 1; // Start from 1 if tasks are empty
@@ -17,12 +21,12 @@ function generateId(tasks) {
 
 // Task instances
 class Task {
-  constructor(id, title, desc, dueDate, priority, notes, checklist, tags, projects) {
+  constructor(id, title, desc, dueDate, notes, checklist, tags, projects) {
     this.id = id;
     this.title = title;
     this.description = desc;
     this.dueDate = dueDate;
-    this.priority = priority;
+    this.priority = [];
     this.notes = notes;
     this.checklist = checklist;
     this.tags = tags;
@@ -32,6 +36,10 @@ class Task {
   // Method to toggle the checklist status
   toggleChecklist() {
     this.checklist = !this.checklist;
+  }
+
+  setPriority(priority) {
+    this.priority.push(priority);
   }
 }
 
@@ -59,7 +67,8 @@ function createTask() {
     return;
   }
 
-  const newTask = new Task(newId, title.value, desc.value, "", "", "", false, selectedTags, "");
+  const newTask = new Task(newId, title.value, desc.value, dueDate.value, "", false, selectedTags, "");
+  newTask.setPriority(priority.value);
 
   // Update the tag categories with the new tasks ID
   selectedTags.map((tag) => {
@@ -72,6 +81,7 @@ function createTask() {
     }
   })
 
+  console.log(newTask);
   tasks.push(newTask);
 
   // Rerender UI every time new item added
