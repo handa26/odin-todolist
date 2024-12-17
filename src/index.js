@@ -63,8 +63,6 @@ function resetForm() {
 
 // Create project logic
 
-// Render sidebar
-
 // Render tasks item
 function renderTasks() {
   content.innerHTML = "";
@@ -131,7 +129,7 @@ function renderCreateTaskModal() {
   });
 }
 
-// Render overall pages
+// Render sidebar
 function renderSidebar() {
   ul.innerHTML = "";
 
@@ -154,6 +152,9 @@ function renderSidebar() {
   });
 }
 
+// Render switch category
+
+// Render overall pages
 function renderPage() {
   renderSidebar();
   renderCreateTaskModal();
