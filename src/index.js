@@ -15,21 +15,53 @@ function generateId(tasks) {
   return maxId + 1;
 }
 
-// Create task logic
-function Task(id, title, desc, checklist, tags) {
-  this.id = id;
-  this.title = title;
-  this.description = desc;
-  this.checklist = checklist;
-  this.tags = tags;
+// Task instances
+class Task {
+  constructor(id, title, desc, dueDate, priority, notes, checklist, tags, projects) {
+    this.id = id;
+    this.title = title;
+    this.description = desc;
+    this.dueDate = dueDate;
+    this.priority = priority;
+    this.notes = notes;
+    this.checklist = checklist;
+    this.tags = tags;
+    this.projects = projects;
+  }
+
+  // Method to toggle the checklist status
+  toggleChecklist() {
+    this.checklist = !this.checklist;
+  }
 }
 
-function createTask() {
-  const newId = generateId(tasks);
-  const selectedTags = [1, 2]
-  const newTask = new Task(newId, title.value, desc.value, false, selectedTags);
+// Convert tasks data to Task instances
+tasks.map((task) => new Task(
+  task.id,
+  task.title,
+  task.description,
+  task.dueDate,
+  task.priority,
+  task.notes,
+  task.checklist,
+  task.tags,
+  task.projects
+));
 
-  // Put selected tags into each tag category in tags data
+// Create task logic
+function createTask() {
+  const newId = generateId(tasks); // Generate unique ID
+  const selectedTags = [1, 2]; // Default selecetd tags
+
+  // Validate input
+  if (title.value === "") {
+    alert("Please fill all input fields.");
+    return;
+  }
+
+  const newTask = new Task(newId, title.value, desc.value, "", "", "", false, selectedTags, "");
+
+  // Update the tag categories with the new tasks ID
   selectedTags.map((tag) => {
     if (tag === 1) {
       tags[0].tasks.push(newTask.id);
@@ -40,12 +72,9 @@ function createTask() {
     }
   })
 
-  if (title.value === "") {
-    alert("Please fill all input fields.");
-    return;
-  }
+  tasks.push(newTask);
 
-  tasks.push(JSON.parse(JSON.stringify(newTask)));
+  // Rerender UI every time new item added
   renderTasks();
   renderSidebar();
 }
