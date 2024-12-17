@@ -70,9 +70,42 @@
               />
             </div>
 
+            <div class="modal-footer">
+              <div class="input-group">
+                <input
+                  type="date"
+                  id="dueDate"
+                  name="dueDate"
+                  value="2024-12-17"
+                  min="2018-01-01"
+                />
+              </div>
+
+              <div class="input-select">
+                <select name="priority" id="priority">
+                  <option value="0" disabled>Priority</option>
+                  <option value="1">Priority 1</option>
+                  <option value="2">Priority 2</option>
+                  <option value="3">Priority 3</option>
+                  <option value="4">Priority 4</option>
+                </select>
+              </div>
+            </div>
+
+            <hr />
+
             <div class="modal-btns">
-              <button class="close btn-light">Cancel</button>
-              <button class="btn-dark" id="btn-add-task">Add task</button>
+              <select name="projects" id="projects">
+                <option value="inbox" disabled>Inbox</option>
+                <option value="personal">Personal</option>
+                <option value="work">Work</option>
+                <option value="errands">Errands</option>
+              </select>
+
+              <div>
+                <button class="close btn-light">Cancel</button>
+                <button class="btn-dark" id="btn-add-task">Add task</button>
+              </div>
             </div>
           </div>
         </div>
