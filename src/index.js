@@ -89,9 +89,12 @@ function createTask() {
   renderSidebar();
 }
 
+// Reset all input form
 function resetForm() {
   title.value = "";
   desc.value = "";
+  dueDate.value = "";
+  priority.value = "";
 }
 
 // Edit task logic
