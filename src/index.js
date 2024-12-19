@@ -19,6 +19,28 @@ function generateId(tasks) {
   return maxId + 1;
 }
 
+// Check status date whether is 'today', 'tomorrow', etc
+function checkDueDateStatus(dueDateString) {
+  const today = new Date();
+  const dueDate = new Date(dueDateString); // Convert "2024-12-18" string into Date obj
+
+  // Normalize dates (remove time for accurate comparison)
+  today.setHours(0, 0, 0, 0);
+  dueDate.setHours(0, 0, 0, 0);
+
+  const timeDifference = (dueDate - today) / (1000 * 60 * 60 * 24);
+
+  if (timeDifference === 0) {
+    return "Today";
+  } else if (timeDifference === 1) {
+    return "Tomorrow";
+  } else if (timeDifference > 1) {
+    return "Upcoming";
+  } else {
+    return "Overdue";
+  }
+}
+
 // Task instances
 class Task {
   constructor(id, title, desc, dueDate, notes, checklist, tags, projects) {
@@ -59,12 +81,26 @@ tasks.map((task) => new Task(
 // Create task logic
 function createTask() {
   const newId = generateId(tasks); // Generate unique ID
-  const selectedTags = [1, 2]; // Default selecetd tags
+  const selectedTags = [1]; // Default selecetd tags
 
   // Validate input
   if (title.value === "") {
     alert("Please fill all input fields.");
     return;
+  }
+
+  switch (checkDueDateStatus(dueDate.value)) {
+    case "Today":
+      selectedTags.push(2);
+      break;
+    case "Tomorrow":
+      selectedTags.push(3);
+      break;
+    case "Upcoming":
+      selectedTags.push(4);
+      break;
+    default:
+      break;
   }
 
   const newTask = new Task(newId, title.value, desc.value, dueDate.value, "", false, selectedTags, "");
@@ -76,10 +112,12 @@ function createTask() {
       tags[0].tasks.push(newTask.id);
     } else if (tag === 2) {
       tags[1].tasks.push(newTask.id);
-    } else {
+    } else if (tag === 3) {
       tags[2].tasks.push(newTask.id);
+    } else if (tag === 4) {
+      tags[3].tasks.push(newTask.id);
     }
-  })
+  });
 
   console.log(newTask);
   tasks.push(newTask);

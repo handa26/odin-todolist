@@ -49,6 +49,12 @@ const tags = [
   },
   {
     id: 3,
+    title: "Tomorrow",
+    tasks: [],
+    classIcon: "fa-solid fa-calendar-days"
+  },
+  {
+    id: 4,
     title: "Upcoming",
     tasks: [],
     classIcon: "fa-solid fa-calendar-days"
