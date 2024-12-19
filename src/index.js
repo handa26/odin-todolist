@@ -161,13 +161,20 @@ function renderTasks() {
     itemContent.classList.add("item-content");
     checkmarkSpan.classList.add("checkmark");
     itemDesc.classList.add("item-desc");
+    itemTag.classList.add("item-tag");
     inputCheckbox.type = "checkbox";
     itemContainer.setAttribute("data-id", task.id);
     
     itemLabel.innerText = task.title;
     itemDesc.innerText = task.description;
-    itemTag.innerText = task.tags[0];
     inputCheckbox.checked = task.checklist;
+
+    // Display tag title
+    tags.map((tag) => {
+      if (tag.tasks.includes(task.id)) {
+        itemTag.innerText = tag.title;
+      }
+    })
 
     content.appendChild(itemContainer);
     itemContainer.appendChild(itemLabel);
